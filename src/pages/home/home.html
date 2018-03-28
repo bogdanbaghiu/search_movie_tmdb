@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-searchbar #titleMovie animated="true" showCancelButton="true" (input)="loadMoviesSearch(titleMovie.value+' ')"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button id={{movie.id}} (click)="SwitchTab(movie.id)" ion-item *ngFor="let movie of allMovies">
+      {{movie.title}}
+    </button>
+  </ion-list>
+</ion-content>
