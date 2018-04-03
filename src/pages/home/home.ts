@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, ViewController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Proveedor1Provider } from '../../providers/proveedor1/proveedor1';
-import { dateDataSortValue } from 'ionic-angular/util/datetime-util';
-import { isUndefined } from 'ionic-angular/util/util';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 
 
@@ -13,32 +11,28 @@ import { AboutPage } from '../about/about';
 })
 export class HomePage {
 
-  movies;
+ 
   allMovies;
-  movieSelectId;
 
-  constructor(public navCtrl: NavController, public proveedor: Proveedor1Provider, public navParam: NavParams
-    , private viewCtrl: ViewController) {
-
-  }
-
-  ionViewWillEnter() {
-    this.viewCtrl.showBackButton(false);
-  }
-
-  ionViewDidLoad() {
+  constructor(public navCtrl: NavController, public proveedor: Proveedor1Provider, public navParam: NavParams) {}
+  
+  viewLoad(){
     this.proveedor.searchCtrl().subscribe(
-      (data) => { this.movies = data; this.allMovies = (Object.keys(data).map(e => data[e]))[3]; },
+      (data) => { this.allMovies = (Object.keys(data).map(e => data[e]))[3]; },
       (error) => { console.error(error) }
     );
   }
 
+
+  ionViewDidLoad() {
+    this.viewLoad(); 
+  }
+
   loadMoviesSearch(titleMovie: string) {
     var empty = (titleMovie == ' ');
-    if (titleMovie == ' ') { this.ionViewDidLoad() } else {
+    if (titleMovie == ' ') { this.viewLoad() } else {
       this.proveedor.searchMovie(titleMovie).subscribe(
         (data) => {
-          this.movies = data;
           this.allMovies = (Object.keys(data).map(e => data[e]))[3];
         },
         (error) => { console.error(error) }

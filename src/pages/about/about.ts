@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Proveedor1Provider } from '../../providers/proveedor1/proveedor1';
-import { dateDataSortValue } from 'ionic-angular/util/datetime-util';
-import { isUndefined } from 'ionic-angular/util/util';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
+import { URL_IMAGE } from '../constants/constants';
 
 @Component({
   selector: 'page-about',
@@ -24,23 +23,19 @@ export class AboutPage {
   ionViewDidLoad() {
     this.idMovie = this.navParams.get('title');
     this.loadMovieId();
-
   }
 
   loadMovieId() {
-    console.error(this.idMovie);
     this.proveedor.searchMovieById(this.idMovie).subscribe(
       (data) => {
-        this.titleMovie = (Object.keys(data).map(e => data[e]))[9];
-        this.languageMovie = (Object.keys(data).map(e => data[e]))[8];
-        this.descriptionMovie = (Object.keys(data).map(e => data[e]))[10];
-        this.dateMovie = (Object.keys(data).map(e => data[e]))[15];
-        this.imageMovie = "https://image.tmdb.org/t/p/w500" + (Object.keys(data).map(e => data[e]))[1];
+        this.titleMovie = data.title;
+        this.languageMovie = data.original_language;
+        this.descriptionMovie = data.overview;
+        this.dateMovie = data.release_date;
+        this.imageMovie = URL_IMAGE.toString() + data.backdrop_path;
       },
       (error) => { console.error(error) }
     );
-
   }
-
 
 }
