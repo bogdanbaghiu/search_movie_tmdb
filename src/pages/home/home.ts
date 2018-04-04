@@ -5,28 +5,26 @@ import { NavParams } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { Movie } from '../../models/movie';
 
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
- 
   allMovies;
 
-  constructor(public navCtrl: NavController, public proveedor: Proveedor1Provider, public navParam: NavParams) {}
-  
-  viewLoad(){
+  constructor(public navCtrl: NavController, public proveedor: Proveedor1Provider, public navParam: NavParams) { }
+
+  viewLoad() {
     this.proveedor.searchCtrl().subscribe(
-      (data : any) => { this.allMovies = data.results; },
+      (data: any) => { this.allMovies = data.results; },
       (error) => { console.error(error) }
     );
   }
 
 
   ionViewDidLoad() {
-    this.viewLoad(); 
+    this.viewLoad();
   }
 
   loadMoviesSearch(titleMovie: string) {

@@ -13,9 +13,7 @@ export class AboutPage {
 
   constructor(public navCtrl: NavController, public proveedor: Proveedor1Provider, public navParams: NavParams) { }
 
-  movie : Movie;
-
-  idMovie;
+  movie: Movie;
   finalMovie;
   titleMovie;
   descriptionMovie;
@@ -24,23 +22,16 @@ export class AboutPage {
   imageMovie;
 
   ionViewDidLoad() {
-    //this.movie = this.navParams.get('title');
     this.loadMovieId();
   }
 
   loadMovieId() {
     this.movie = this.navParams.get('title');
-    console.log(this.movie);
-  /*  this.proveedor.searchMovieById(this.idMovie).subscribe(
-      (data) => {*/
-        this.titleMovie = this.movie.title;
-        this.languageMovie = this.movie.original_language;
-        this.descriptionMovie = this.movie.overview;
-        this.dateMovie = this.movie.release_date;
-        this.imageMovie = URL_IMAGE.toString() + this.movie.backdrop_path;
-     /* },
-      (error) => { console.error(error) }
-    );*/
+    this.titleMovie = this.movie.title;
+    this.languageMovie = this.movie.original_language;
+    this.descriptionMovie = this.movie.overview;
+    this.dateMovie = this.movie.release_date;
+    this.imageMovie = URL_IMAGE.toString() + this.movie.backdrop_path;
   }
 
 }
