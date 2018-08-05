@@ -2,18 +2,15 @@
   <ion-navbar></ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <img src={{imageMovie}}>
-  <label ion-item>
-    Title: {{titleMovie}}
-  </label>
-  <label ion-item>
-    Date: {{dateMovie}}
-  </label>
-  <label ion-item>
-    Language: {{languageMovie}}
-  </label>
+  <ion-card>      
+    <ion-card-content>
+      <ion-card-title> {{titleMovie}} </ion-card-title>
+      <img src={{imageMovie}}>
+    </ion-card-content>
+  </ion-card>
+  <ion-item> Date: {{dateMovie}} </ion-item>
+  <ion-item> Language: {{languageMovie}} </ion-item>
   <ion-item>
     <ion-label class="testclass" floating>Description: </ion-label>
     <ion-textarea type="text" rows="12" value={{descriptionMovie}}></ion-textarea>

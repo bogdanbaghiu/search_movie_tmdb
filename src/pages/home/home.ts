@@ -4,6 +4,7 @@ import { Proveedor1Provider } from '../../providers/proveedor1/proveedor1';
 import { NavParams } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { Movie } from '../../models/movie';
+import { URL_IMAGE } from '../constants/constants';
 
 @Component({
   selector: 'page-home',
@@ -12,6 +13,8 @@ import { Movie } from '../../models/movie';
 export class HomePage {
 
   allMovies;
+  imageMovie;
+  movieImageURL;
 
   constructor(public navCtrl: NavController, public proveedor: Proveedor1Provider, public navParam: NavParams) { }
 
@@ -25,10 +28,10 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.viewLoad();
+    this.movieImageURL = URL_IMAGE.toString();
   }
 
   loadMoviesSearch(titleMovie: string) {
-    var empty = (titleMovie == ' ');
     if (titleMovie == ' ') { this.viewLoad() } else {
       this.proveedor.searchMovie(titleMovie).subscribe(
         (data) => {
