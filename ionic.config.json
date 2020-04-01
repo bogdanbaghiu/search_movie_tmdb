@@ -1,8 +1,5 @@
 {
-  "name": "proyectoGetHttp1",
-  "app_id": "",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
+  "name": "search_movie_tmdb",
+  "integrations": {},
+  "type": "angular"
 }
