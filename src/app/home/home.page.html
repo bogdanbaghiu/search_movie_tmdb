@@ -1,20 +1,21 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar text-left>
     <ion-title>
-      Blank
+      Search Movie TMDB
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content [fullscreen]="false">
+  <div class="movies-flex" *ngIf="allMovies">
+    <div class="movie" *ngFor="let movie of allMovies">
+      <div class="poster">
+        <img *ngIf="movie.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+        <img *ngIf="movie.poster_path" class="poster-effect" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+      </div>
+      <div class="title">{{ movie.title }}</div>
+      <div class="year">{{ movie.release_date | date:'yyyy' }}</div>
+      <div class="vote"><ion-icon name="star"></ion-icon><b>{{ movie.vote_average }}</b>/10</div>
+    </div>
   </div>
 </ion-content>
